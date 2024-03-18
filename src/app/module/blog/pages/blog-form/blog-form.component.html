@@ -1,0 +1,37 @@
+<h2>Blog Details</h2>
+<form class="g-3 needs-validation" [formGroup]="blogForm" (ngSubmit)="saveBlog()" novalidate>
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">Title</label>
+      <input type="text" class="form-control" id="validationCustom01" formControlName="title" required>
+      <div class="invalid-feedback" *ngIf="blogForm.get('title')?.invalid && (blogForm.get('title')?.dirty || blogForm.get('title')?.touched)">
+        Please provide a valid title.
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Description</label>
+      <textarea class="form-control" formControlName="description" required></textarea>
+      <div class="invalid-feedback" *ngIf="blogForm.get('description')?.invalid && (blogForm.get('description')?.dirty || blogForm.get('description')?.touched)">
+        Please provide a valid description.
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom03" class="form-label">Author</label>
+      <input type="text" class="form-control" formControlName="author" required>
+      <div class="invalid-feedback" *ngIf="blogForm.get('author')?.invalid && (blogForm.get('author')?.dirty || blogForm.get('author')?.touched)">
+        Please provide a valid author.
+      </div>
+    </div>
+    <div class="col-md-4" formArrayName="comments">
+      <div *ngFor="let comment of commentForms.controls; let i=index">
+        <label>Comment {{ i + 1 }}:</label>
+        <input type="text" class="form-control" [formControlName]="i">
+        <div *ngIf="comment.invalid && (comment.dirty || comment.touched)">
+          Please provide a valid comment.
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary mt-2" (click)="addComment()">Add Comment</button>
+    </div>
+    <div class="col-4 mt-5">
+      <button class="btn btn-primary" type="submit" [disabled]="blogForm.invalid">Save Blog</button>
+    </div>
+  </form>

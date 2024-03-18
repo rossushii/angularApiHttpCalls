@@ -1,0 +1,33 @@
+<div>
+  <h2>Profile</h2>
+    <form class="row g-3 needs-validation vstack gap-3" [formGroup]="profileForm" (ngSubmit)="submitForm()" novalidate>
+      <div class="col-md-4">
+        <label for="validationCustom01" class="form-label">Name</label>
+        <input type="text" class="form-control" id="validationCustom01" formControlName="name" required>
+        <div class="invalid-feedback" *ngIf="profileForm.get('name')?.invalid && (profileForm.get('name')?.dirty || profileForm.get('name')?.touched)">
+          Please provide a valid name.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="validationCustom02" class="form-label">Email</label>
+        <input type="email" class="form-control" id="validationCustom02" formControlName="email" required>
+        <div class="invalid-feedback" *ngIf="profileForm.get('email')?.invalid && (profileForm.get('email')?.dirty || profileForm.get('email')?.touched)">
+          Please provide a valid email.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Bio</label>
+        <textarea class="form-control" formControlName="bio"></textarea>
+      </div>
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="validationCustom04" formControlName="active">
+          <label class="form-check-label" for="validationCustom04">Active</label>
+        </div>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit" [disabled]="profileForm.invalid">Save</button>
+      </div>
+    </form>
+</div>
+  

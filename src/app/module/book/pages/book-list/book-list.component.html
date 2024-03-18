@@ -1,0 +1,15 @@
+
+<div>
+  <h2>Book List</h2>
+  <app-command-bar [showAddBlog]="false" [showAddBook]="true" (addBook)="handleAddBook()" (deleteAll)="handleDeleteAll()"></app-command-bar>
+    <div *ngFor="let book of books" class="mt-2 col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ book.name }}</h5>
+          <p class="card-text">{{ book.authors }}</p>
+          <p class="card-text">{{ book.isbn }}</p>
+          <button href="#" class="btn btn-primary" (click)="edit(book.id)">Edit</button>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<h2>Book Details</h2>
+<form [formGroup]="bookForm" (ngSubmit)="saveBook()">
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">Book</label>
+      <input type="text" class="form-control" id="validationCustom01" formControlName="name" required>
+      <div class="invalid-feedback" *ngIf="bookForm.get('name')?.invalid && (bookForm.get('name')?.dirty || bookForm.get('name')?.touched)">
+        Please provide a valid name for the book.
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">ISBN</label>
+      <input type="text" class="form-control" id="validationCustom02" formControlName="isbn" required>
+      <div class="invalid-feedback" *ngIf="bookForm.get('isbn')?.invalid && (bookForm.get('isbn')?.dirty || bookForm.get('isbn')?.touched)">
+        Please provide a valid ISBN for the book.
+      </div>
+    </div>
+    <div class="col-md-4" formArrayName="authors">
+      <div *ngFor="let author of authorForms.controls; let i=index">
+        <label>Author {{ i + 1 }}:</label>
+        <input type="text" class="form-control" [formControlName]="i">
+      </div>
+      <button type="button" class="btn btn-primary mt-2" (click)="addAuthor()">Add Author</button>
+    </div>
+    <div class="col-4 mt-5">
+      <button class="btn btn-primary" type="submit" [disabled]="bookForm.invalid">Save Book</button>
+    </div>
+  </form>

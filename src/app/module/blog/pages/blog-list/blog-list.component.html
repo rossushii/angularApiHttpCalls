@@ -1,0 +1,16 @@
+
+<div>
+  <h2>Blog List</h2>
+  <app-command-bar [showAddBlog]="true" [showAddBook]="false" (addBlog)="handleAddBlog()" (deleteAll)="handleDeleteAll()"></app-command-bar>
+  <div *ngFor="let blog of blogs" class="mt-2 col-md-3">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ blog.title }}</h5>
+      <p class="card-text">{{ blog.author }}</p>
+      <p class="card-text">{{ blog.date }}</p>
+      <button class="btn btn-primary" (click)="edit(blog.id)">Edit</button>
+    </div>
+  </div>
+</div>
+</div>
+
