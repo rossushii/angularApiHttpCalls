@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Book } from '../../model/book';
 import { BookService } from '../../services/book.service';
-
 
 @Component({
   selector: 'app-book-form',
   templateUrl: './book-form.component.html',
-  styleUrl: './book-form.component.scss'
+  styleUrls: ['./book-form.component.scss']
 })
 export class BookFormComponent implements OnInit {
   bookForm!: FormGroup;
@@ -16,20 +16,20 @@ export class BookFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private bookService: BookService // Inject your book service
+    private router: Router,
+    private bookService: BookService
   ) {}
 
   ngOnInit(): void {
+    this.initForm();
     this.route.params.subscribe(params => {
       this.bookId = params['id'] ? +params['id'] : null;
+      console.log(this.bookId)
       if (this.bookId) {
         this.loadBookData(this.bookId);
-      } else {
-        this.initForm();
       }
     });
   }
-
 
   initForm(): void {
     this.bookForm = this.fb.group({
@@ -40,26 +40,45 @@ export class BookFormComponent implements OnInit {
   }
 
   loadBookData(id: number): void {
-    const book = this.bookService.getBookById(id);
-    if (book) {
-      this.bookForm = this.fb.group({
-        name: [book.name],
-        authors: this.fb.array(book.authors.map(author => this.fb.control(author))),
-        isbn: [book.isbn]
-      });
-    }
+    this.bookService.getBookById(id).subscribe((book: Book | undefined) => {
+      console.log(book)
+      if (book) {
+        this.bookForm.patchValue({
+          name: book.name,
+          isbn: book.isbn
+        });
+        this.clearAuthors();
+        book.authors.forEach(author => this.addAuthorFormControl(author));
+      } else {
+        console.error(`Book with id ${id} not found`);
+      }
+    });
   }
-  
+
   get authorForms() {
     return this.bookForm.get('authors') as FormArray;
+  }
+
+  addAuthorFormControl(author: string): void {
+    const authorFormArray = this.bookForm.get('authors') as FormArray;
+    authorFormArray.push(this.fb.control(author));
   }
 
   addAuthor() {
     const author = this.fb.control('');
     this.authorForms.push(author);
   }
-  
-  saveBook(){
-    console.log("Saved!")
+
+  clearAuthors(): void {
+    const authorFormArray = this.bookForm.get('authors') as FormArray;
+    while (authorFormArray.length !== 0) {
+      authorFormArray.removeAt(0);
+    }
+  }
+
+  saveBook(): void {
+    // Handle save logic here
+    console.log('Book saved!');
+    this.router.navigate(['/book-list']); 
   }
 }

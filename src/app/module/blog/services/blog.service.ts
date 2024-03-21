@@ -1,22 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 import { Blog } from '../model/blog';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
-    getBlogById(id: number): Blog | undefined {
-        return this.blogs.find(blog => blog.id === id);
-    }
-  private blogs: Blog[] = [
-    { id: 1, title: 'Blog 1', description: 'Description 1', author: 'Author 1', comments: ['nice'] },
-    { id: 2, title: 'Blog 2', description: 'Description 2', author: 'Author 2', comments: ['ugly'] },
-    { id: 3, title: 'Blog 3', description: 'Description 3', author: 'Author 3', comments: [] }
-  ];
+  private baseUrl = 'http://localhost:3001';
+  constructor(private http: HttpClient) {}
 
-  constructor() {}
-
-  getAllBlogs(): Blog[] {
-    return this.blogs;
+  // Method to get all Blogs
+  getAllBlogs(): Observable<Blog[]> {
+    return this.http.get<Blog[]>(`${this.baseUrl}/blogs`).pipe(
+      tap((data: Blog[]) => data)
+    );
+  }
+  getBlogById(id: number): Observable<Blog | undefined> {
+    return this.http.get<Blog>(`${this.baseUrl}/blogs/${id}`);
   }
 }

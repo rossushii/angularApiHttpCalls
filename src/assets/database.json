@@ -1,0 +1,136 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "name": "Percy Jackson & the Olympians: The Lightning Thief",
+      "authors": ["Rick Riordan"],
+      "isbn": "978-0786838653"
+    },
+    {
+      "id": 2,
+      "name": "Percy Jackson & the Olympians: The Sea of Monsters",
+      "authors": ["Rick Riordan"],
+      "isbn": "978-0786856862"
+    },
+    {
+      "id": 3,
+      "name": "Percy Jackson & the Olympians: The Titan's Curse",
+      "authors": ["Rick Riordan"],
+      "isbn": "978-1423101482"
+    },
+    {
+      "id": 4,
+      "name": "Percy Jackson & the Olympians: The Battle of the Labyrinth",
+      "authors": ["Rick Riordan"],
+      "isbn": "978-1423101468"
+    },
+    {
+      "id": 5,
+      "name": "Percy Jackson & the Olympians: The Last Olympian",
+      "authors": ["Rick Riordan"],
+      "isbn": "978-1423101475"
+    },
+    {
+      "id": 6,
+      "name": "The Heroes of Olympus: The Lost Hero",
+      "authors": ["Rick Riordan"],
+      "isbn": "978-1423113393"
+    },
+    {
+      "id": 7,
+      "name": "The Heroes of Olympus: The Son of Neptune",
+      "authors": ["Rick Riordan"],
+      "isbn": "978-1423140597"
+    },
+    {
+      "id": 8,
+      "name": "The Heroes of Olympus: The Mark of Athena",
+      "authors": ["Rick Riordan"],
+      "isbn": "978-1423140603"
+    },
+    {
+      "id": 9,
+      "name": "The Heroes of Olympus: The House of Hades",
+      "authors": ["Rick Riordan"],
+      "isbn": "978-1423146728"
+    },
+    {
+      "id": 10,
+      "name": "The Heroes of Olympus: The Blood of Olympus",
+      "authors": ["Rick Riordan"],
+      "isbn": "978-1423146735"
+    }
+  ],
+  "blogs": [
+    {
+      "id": 1,
+      "title": "A Guide to Hiking in the Swiss Alps",
+      "description": "Explore the stunning beauty of the Swiss Alps with this comprehensive hiking guide.",
+      "author": "John Doe",
+      "comments": ["Great guide! Can't wait to try these hikes."]
+    },
+    {
+      "id": 2,
+      "title": "Top Destinations for Backpacking in Southeast Asia",
+      "description": "Discover the best backpacking destinations in Southeast Asia, from Thailand to Vietnam.",
+      "author": "Jane Smith",
+      "comments": ["Thanks for the recommendations!"]
+    },
+    {
+      "id": 3,
+      "title": "Hiking the Inca Trail to Machu Picchu",
+      "description": "Embark on the adventure of a lifetime by hiking the iconic Inca Trail to Machu Picchu.",
+      "author": "Michael Johnson",
+      "comments": ["Absolutely breathtaking views."]
+    },
+    {
+      "id": 4,
+      "title": "Exploring the National Parks of the United States",
+      "description": "Experience the natural beauty of the US with this guide to its national parks.",
+      "author": "Sarah Adams",
+      "comments": ["Such diverse landscapes!"]
+    },
+    {
+      "id": 5,
+      "title": "Solo Travel Tips: How to Travel Alone Safely",
+      "description": "Learn valuable tips and tricks for traveling solo and staying safe on the road.",
+      "author": "Chris Williams",
+      "comments": ["Solo travel can be so empowering."]
+    },
+    {
+      "id": 6,
+      "title": "The Ultimate Guide to Backpacking in Europe",
+      "description": "Plan your backpacking adventure through Europe with this detailed guide.",
+      "author": "Emily Davis",
+      "comments": ["Europe is a backpacker's paradise!"]
+    },
+    {
+      "id": 7,
+      "title": "Hiking Tips for Beginners: Getting Started on the Trails",
+      "description": "New to hiking? Get started with these essential tips for beginners.",
+      "author": "Daniel Brown",
+      "comments": ["Very helpful tips!"]
+    },
+    {
+      "id": 8,
+      "title": "Adventurous Trekking Routes in Nepal",
+      "description": "Explore some of the most adventurous trekking routes in Nepal, including the Everest Base Camp trek.",
+      "author": "Sophia Lee",
+      "comments": ["Nepal is a trekker's paradise."]
+    },
+    {
+      "id": 9,
+      "title": "The Best Camping Spots in California",
+      "description": "Discover the best camping spots in California for a memorable outdoor getaway.",
+      "author": "David Wilson",
+      "comments": ["California has so much to offer outdoor enthusiasts."]
+    },
+    {
+      "id": 10,
+      "title": "Essential Gear for Your Next Backpacking Trip",
+      "description": "Make sure you're prepared for your next backpacking adventure with this list of essential gear.",
+      "author": "Rachel Clark",
+      "comments": ["Don't forget to pack light!"]
+    }
+  ]
+}

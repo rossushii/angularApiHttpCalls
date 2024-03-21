@@ -5,6 +5,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { BookRoutingModule } from './book-routing.module';
 import { BookFormComponent } from './pages/book-form/book-form.component';
 import { BookListComponent } from './pages/book-list/book-list.component';
+import { BookResolver } from './resolver/book.resolver';
 import { BookService } from './services/book.service';
 
 
@@ -19,6 +20,9 @@ import { BookService } from './services/book.service';
     SharedModule,
     ReactiveFormsModule
   ],
-  providers: [BookService]
+  providers: [
+    BookService,
+    BookResolver
+  ]
 })
 export class BookModule { }

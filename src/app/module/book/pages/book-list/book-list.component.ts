@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../../model/book';
-import { BookService } from '../../services/book.service';
 
 @Component({
   selector: 'app-book-list',
@@ -10,12 +9,16 @@ import { BookService } from '../../services/book.service';
 })
 export class BookListComponent implements OnInit {
   books: Book[] = []
-  constructor(private router: Router, private bookService: BookService) { }
+  
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
 
   ngOnInit(): void {
-    this.books = this.bookService.getAllBooks();
+    this.route.data.subscribe(data => {
+      this.books = data['books'];
+    });
   }
+
   handleAddBook() {
     console.log('Add Book button clicked in BookListComponent');
   }
@@ -24,9 +27,9 @@ export class BookListComponent implements OnInit {
     console.log('Delete All button clicked in BookListComponent');
   }
 
-  edit(id:number): void {
-    // Implement edit logic here, you can emit an event to the parent component
-    console.log('Editing book', this.bookService.getBookById(id));
+  edit(id: number): void {
+    console.log('Editing book with id:', id);
     this.router.navigate(['/book/form', id]);
   }
 }
+console.log('star')

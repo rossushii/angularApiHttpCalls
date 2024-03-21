@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { BlogService } from '../../services/blog.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Blog } from '../../model/blog';
 
 @Component({
   selector: 'app-blog-list',
@@ -8,12 +8,14 @@ import { BlogService } from '../../services/blog.service';
   styleUrl: './blog-list.component.scss'
 })
 export class BlogListComponent implements OnInit {
-  blogs: any[] = [];
-  constructor(private router: Router, private bookService: BlogService) { }
+  blogs: Blog[] = [];
 
+  constructor(private router: Router, private route : ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.blogs = this.bookService.getAllBlogs();
+    this.route.data.subscribe(data =>{
+      this.blogs = data['blogs'];
+    });
   }
   handleAddBlog() {
     console.log('Add Blog button clicked in BlogListComponent');
@@ -24,7 +26,7 @@ export class BlogListComponent implements OnInit {
   }
   
   edit(id:number): void {
-    console.log('Editing book', this.bookService.getBlogById(id));
+    console.log('Editing blog',id);
     this.router.navigate(['/blog/form', id]);
   }
 }

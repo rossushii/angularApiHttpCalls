@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookFormComponent } from './pages/book-form/book-form.component';
 import { BookListComponent } from './pages/book-list/book-list.component';
+import { BookResolver } from './resolver/book.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: BookListComponent
+    component: BookListComponent,
+    resolve: { books: BookResolver } 
   },
   {
     path: 'form',

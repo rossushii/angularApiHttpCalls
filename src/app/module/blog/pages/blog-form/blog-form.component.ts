@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Blog } from '../../model/blog';
 import { BlogService } from '../../services/blog.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class BlogFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initForm();
     this.route.params.subscribe(params => {
       this.blogId = params['id'] ? +params['id'] : null;
       if (this.blogId) {
@@ -40,15 +42,23 @@ export class BlogFormComponent implements OnInit {
   }
 
   loadBlogData(id: number): void {
-    const blog = this.blogService.getBlogById(id);
-    if (blog) {
-      this.blogForm = this.fb.group({
-        title: [blog.title],
-        description: [blog.description],
-        author: [blog.author],
-        comments: this.fb.array(blog.comments.map(comment => this.fb.control(comment))),
-      });
-    }
+    this.blogService.getBlogById(id).subscribe((blog: Blog | undefined) => {
+      if (blog) {
+        this.blogForm.patchValue({
+          title: blog.title,
+          description: blog.description,
+          author: blog.author,
+        });
+
+        const commentsArray = this.blogForm.get('comments') as FormArray;
+        commentsArray.clear();
+        blog.comments.forEach(comment => {
+          commentsArray.push(this.fb.control(comment));
+        });
+      } else {
+        console.error(`Blog with id ${id} not found`);
+      }
+    });
   }
   get commentForms() {
     return this.blogForm.get('comments') as FormArray;

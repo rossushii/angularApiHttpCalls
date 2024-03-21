@@ -18,6 +18,9 @@
       <div *ngFor="let author of authorForms.controls; let i=index">
         <label>Author {{ i + 1 }}:</label>
         <input type="text" class="form-control" [formControlName]="i">
+        <div *ngIf="author.invalid && (author.dirty || author.touched)">
+          Please provide a valid author.
+        </div>
       </div>
       <button type="button" class="btn btn-primary mt-2" (click)="addAuthor()">Add Author</button>
     </div>
