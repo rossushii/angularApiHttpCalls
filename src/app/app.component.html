@@ -1,4 +1,6 @@
-<app-header></app-header>
-<body class="p-3 m-0 border-0 bd-example m-0 border-0"><router-outlet></router-outlet></body>
-
-
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <ng-container *ngIf="!isLoginPage()">
+      <app-header></app-header>
+    </ng-container>
+    <router-outlet></router-outlet>
+  </body>

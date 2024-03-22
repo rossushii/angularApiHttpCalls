@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../guards/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +12,15 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
-    this.http.post<any>('http://localhost:3000/users', { username: this.username, password: this.password })
+    this.authService.login(this.username, this.password)
       .subscribe(
         () => {
           // Successful login
           this.router.navigate(['/blog']);
+          console.log('logged')
         },
         (error) => {
           // Failed login
